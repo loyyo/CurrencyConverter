@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+			crossorigin="anonymous"
+		/>
+		<style>
+			@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+html {
+	font-size: 16px;
+}
+body {
+	font-family: 'Montserrat', sans-serif;
+	background-color: #505562;
+	color: #fff;
+}
+.container {
+	width: 500px;
+	margin: 20px auto;
+	user-select: none;
+	overflow-x: hidden;
+	position: relative;
+}
+.header {
+	background-color: #2d2d37;
+	text-align: center;
+	padding: 1.75rem;
+}
+.header h1 {
+	font-size: 2.25rem;
+}
+
+.currencies {
+	height: calc(100vh - 40px - 100px - 40px - 58px);
+	background-color: #222;
+	padding: 0 1.5rem 1rem 1.5rem;
+	overflow-y: auto;
+}
+.empty {
+  background-color: #222;
+  text-align: right;
+  font-size: 0.75rem;
+  padding: 0.75rem 2rem 0.75rem 0;
+}
+.convert-btn {
+  background-color: #00b386;
+  color: #fff;
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-top: 3px solid #222;
+  outline: none;
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.25s;
+  position: relative;
+}
+.input label {
+  font-size: 1.5rem;
+  display: inline-block;
+	width: 12rem;
+	height: 1.5rem;
+  text-align: center;
+}
+.input input {
+  font-size: 1.5rem;
+  width: 50%;
+  background-color: transparent;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  color: #fff;
+  padding: 0.3rem;
+  margin-bottom: 0.75rem;
+}
+.value {
+	font-size: 2rem;
+	height: 1.5rem;
+  text-align: center;
+}
+
+		</style>
+		<title>Currency Converter</title>
+	</head>
+	<body>
+		<div class="container">
+				<div>
+				{% block content %}
+				<div class="header">
+  <h1>Currency Converter</h1>
+				</div>
+				<div class="empty"></div>
+<div class="currencies">
+  <form method='post'>
+		{% csrf_token %}
+		<div class="input">
+			{{ form.as_p }}
+		</div>
+    <button class='convert-btn' type="submit">Convert</button>
+	</form>
+	<div class="empty"></div>
+  <div class='value'>
+    {{amount}} {{a}} = {{ value }} {{b}}
+	</div>
+	<div class="empty"></div>
+</div>
+				{% endblock %}
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
