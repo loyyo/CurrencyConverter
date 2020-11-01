@@ -89,6 +89,11 @@ body {
 	height: 1.5rem;
   text-align: center;
 }
+.btc {
+	left: 5rem;
+	bottom: 2rem;
+	position: absolute;
+}
 
 		</style>
 		<title>Currency Converter</title>
@@ -114,6 +119,11 @@ body {
     {{amount}} {{a}} = {{ value }} {{b}}
 	</div>
 	<div class="empty"></div>
+	<div class="btc">
+		<div class='value'>
+			1 BTC = {{ price }} PLN
+		</div>
+	</div>
 </div>
 				{% endblock %}
 				</div>

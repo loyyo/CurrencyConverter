@@ -2,6 +2,7 @@ from django.views.generic import TemplateView
 from django.shortcuts import render, redirect
 from .forms import CurrencyForm
 from .templatetags.convert import convert
+from forex_python.bitcoin import BtcConverter
 
 
 def handler404(request, exception=None):
@@ -15,7 +16,9 @@ class HomeView(TemplateView):
         try:
             form = CurrencyForm()
             value = 0
-            context = {'form': form, 'value': value}
+            btc = BtcConverter()
+            price = round(btc.get_latest_price('PLN'), 2)
+            context = {'form': form, 'value': value, 'price': price}
             return render(request, self.template_name, context)
         except:
             return redirect('/')
@@ -28,8 +31,10 @@ class HomeView(TemplateView):
                 amount = form.cleaned_data['amount']
                 b = form.cleaned_data['currency_two'].upper()
                 value = convert(a, b, amount)
+                btc = BtcConverter()
+            price = round(btc.get_latest_price('PLN'), 2)
             context = {'form': form, 'value': value,
-                       'a': a, 'b': b, 'amount': amount}
+                       'a': a, 'b': b, 'amount': amount, 'price': price}
             return render(request, self.template_name, context)
         except:
             return redirect('/')
