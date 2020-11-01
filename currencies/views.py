@@ -10,9 +10,7 @@ class HomeView(TemplateView):
     def get(self, request):
         form = CurrencyForm()
         value = 0
-        a = form.cleaned_data['currency_one']
-        b = form.cleaned_data['currency_two']
-        context = {'form': form, 'value': value, 'a': a, 'b': b}
+        context = {'form': form, 'value': value}
         return render(request, self.template_name, context)
 
     def post(self, request):
