@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+handler404 = 'currencies.views.handler404'
+handler500 = 'currencies.views.handler404'
 urlpatterns = [
     path('', include('currencies.urls')),
     path('admin/', admin.site.urls),
